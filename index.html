@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cube Counter</title>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <img
+      id="av-logo"
+      src="https://images.squarespace-cdn.com/content/5815cb5b197aea6c5f13a2d0/1556924489351-QDV744Z6QDVVVJH4O3XY/AV-Symbol-White-Transparent-Website.png?format=1000w&content-type=image%2Fpng"
+    />
+    <h1 id="title">CubeCounter</h1>
+    <input
+      id="individual-tallies"
+      placeholder="Enter individual tallies (e.g. 1 2 3)"
+    />
+    <button onclick="calculateOrClearTally()">Calculate</button>
+    <div class="results-container">
+      <p class="results-text">
+        People who took veganism seriously: <span id="groupTally"></span>
+      </p>
+      <p class="results-text">
+        Number of outreachers: <span id="numOfOutreachers"></span>
+      </p>
+    </div>
+  </body>
+</html>

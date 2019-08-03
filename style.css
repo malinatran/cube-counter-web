@@ -1,0 +1,63 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+#title {
+  font-size: 30px;
+}
+
+#av-logo {
+  height: 100px;
+  width: 100px;
+  padding: 20px 0 10px 0;
+}
+
+input {
+  background-color: black;
+  border-bottom: 3px solid white;
+  border: none;
+  color: white;
+  font-size: 20px;
+  outline: none;
+  padding-bottom: 10px;
+  width: 300px;
+}
+
+button {
+  background-color: red;
+  border-radius: 2px;
+  border: none;
+  color: white;
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-top: 20px;
+  margin: 10px auto;
+  text-transform: uppercase;
+  padding: 10px 20px;
+}
+
+p {
+  color: white;
+  font-size: 20px;
+}
+
+.results-container {
+  display: none;
+  padding: 10px;
+}
+
+.results-text {
+  font-size: 16px;
+  margin: 10px;
+}
+
+#groupTally,
+#numOfOutreachers {
+  color: red;
+  font-weight: bold;
+}
