@@ -3,20 +3,51 @@ var calculateOrClearTally
 $(function() {
   calculateOrClearTally = () => {
     if ($('button').text() === 'Calculate') {
-      var individualTallies = $('#individual-tallies').val()
-      var adjustedTallies = individualTallies
-        .split(' ')
-        .map(tally => adjustIndividualTally(tally))
-      var groupTally = Math.round(adjustedTallies.reduce((a, b) => a + b, 0))
-      var numOfOutreachers = adjustedTallies.filter(tally => tally > 0).length
-      displayResults(groupTally, numOfOutreachers)
+      var tallies = getIndividualTallies()
+      var adjustedTallies = tallies.map(tally => adjustIndividualTally(tally))
+      var actualGroupTally = calculateGroupTally(tallies)
+      var adjustedGroupTally = calculateGroupTally(adjustedTallies)
+      var percentageDiff = calculatePercentageDiff(
+        actualGroupTally,
+        adjustedGroupTally,
+      )
+      var outreachNum = adjustedTallies.filter(tally => tally > 0).length
+      displayResults({
+        actualTally: actualGroupTally,
+        adjustedTally: adjustedGroupTally,
+        percentageDiff: percentageDiff,
+        outreacherNum: outreachNum,
+      })
     } else {
       clearTally()
     }
   }
 
+  getIndividualTallies = () => {
+    var tallies = $('#individual-tallies')
+      .val()
+      .split(' ')
+      .map(tally => parseInt(tally))
+
+    if (!tallies[0]) {
+      $('#individual-tallies').attr('disabled', 'disabled')
+      $('.error-container').css('display', 'block')
+      $('button').html('Clear')
+    } else {
+      return tallies
+    }
+  }
+
+  calculateGroupTally = tallies => {
+    return Math.round(tallies.reduce((a, b) => a + b, 0))
+  }
+
+  calculatePercentageDiff = (actualGroupTally, adjustedGroupTally) => {
+    return ((adjustedGroupTally / actualGroupTally) * 100).toFixed(0)
+  }
+
   adjustIndividualTally = tally => {
-    let numericTally = parseInt(tally) || 0
+    let numericTally = tally || 0
 
     switch (true) {
       case numericTally > 0 && numericTally <= 5:
@@ -33,14 +64,20 @@ $(function() {
   }
 
   clearTally = () => {
+    $('#individual-tallies').removeAttr('disabled')
     $('#individual-tallies').val('')
+    $('.error-container').css('display', 'none')
     $('.results-container').css('display', 'none')
     $('button').html('Calculate')
   }
 
-  displayResults = (groupTally, numOfOutreachers) => {
-    $('#groupTally').html(groupTally)
-    $('#numOfOutreachers').html(numOfOutreachers)
+  displayResults = results => {
+    var { actualTally, adjustedTally, percentageDiff, outreacherNum } = results
+    $('#individual-tallies').attr('disabled', 'disabled')
+    $('#actual-group-tally').html(actualTally)
+    $('#adjusted-group-tally').html(adjustedTally)
+    $('#percentage-diff').html(`${percentageDiff}%`)
+    $('#outreacher-num').html(outreacherNum)
     $('.results-container').css('display', 'block')
     $('button').html('Clear')
   }

@@ -23,7 +23,12 @@ input {
   font-size: 20px;
   outline: none;
   padding-bottom: 10px;
+  text-align: center;
   width: 300px;
+}
+
+input:disabled {
+  color: grey;
 }
 
 button {
@@ -46,6 +51,7 @@ p {
   font-size: 20px;
 }
 
+.error-container,
 .results-container {
   display: none;
   padding: 10px;
@@ -56,8 +62,7 @@ p {
   margin: 10px;
 }
 
-#groupTally,
-#numOfOutreachers {
+.results-text > span {
   color: red;
   font-weight: bold;
 }

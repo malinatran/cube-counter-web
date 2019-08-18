@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Cube Counter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script
       src="https://code.jquery.com/jquery-3.4.1.min.js"
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -10,7 +11,7 @@
     <script src="app.js"></script>
     <link rel="stylesheet" href="style.css" />
     <link
-      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -25,12 +26,23 @@
       placeholder="Enter individual tallies (e.g. 1 2 3)"
     />
     <button onclick="calculateOrClearTally()">Calculate</button>
+    <div class="error-container">
+      <p class="error-text">
+        Please enter valid input!
+      </p>
+    </div>
     <div class="results-container">
       <p class="results-text">
-        People who took veganism seriously: <span id="groupTally"></span>
+        Actual tally: <span id="actual-group-tally"></span>
       </p>
       <p class="results-text">
-        Number of outreachers: <span id="numOfOutreachers"></span>
+        Adjusted tally: <span id="adjusted-group-tally"></span> (<span
+          id="percentage-diff"
+        ></span>
+        of actual)
+      </p>
+      <p class="results-text">
+        Number of outreachers: <span id="outreacher-num"></span>
       </p>
     </div>
   </body>
